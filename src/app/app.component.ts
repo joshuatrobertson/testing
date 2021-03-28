@@ -10,12 +10,13 @@ import { RestartGameComponent } from './restart-game/restart-game.component';
 })
 export class AppComponent implements OnInit {
 
+  // Images pulled from site. The number * 2 represents playing cards for the user
   cardImages = [
-    'pDGNBK9A0sk',
-    'fYDrhbVlV1E',
-    'qoXgaF27zBc',
-    'b9drVB7xIOI',
-    'TQ-q5WAVHj0'
+    'pDGNBK9A0sk'
+    //'fYDrhbVlV1E',
+    //'qoXgaF27zBc',
+    //'b9drVB7xIOI',
+    //'TQ-q5WAVHj0'
   ];
 
   userFirstTime = 0;
@@ -88,7 +89,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  startTimer() {
+  startTimer(): void {
     console.log('=====>');
     this.interval = setInterval(() => {
       if (this.time === 0) {
@@ -104,11 +105,11 @@ export class AppComponent implements OnInit {
     return minutes + ':' + (value - minutes * 60);
   }
 
-  pauseTimer() {
+  pauseTimer(): void {
     clearInterval(this.interval);
   }
 
-  resetTimer() {
+  resetTimer(): void {
     this.time = 0;
   }
 
