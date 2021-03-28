@@ -26,6 +26,9 @@ export class AppComponent implements OnInit {
   interval;
   display;
 
+  // Allow the user 2 turns
+  userSecondGame = false;
+
   cards: CardData[] = [];
 
   flippedCards: CardData[] = [];
@@ -117,7 +120,18 @@ export class AppComponent implements OnInit {
         this.matchedCount++;
 
         if (this.matchedCount === this.cardImages.length) {
+          // Stop timer and assign the times for each run
           clearInterval(this.interval);
+          if (this.userSecondGame === false) {
+            this.userFirstTime = this.time;
+            this.userSecondGame = true;
+          }
+          else {
+            this.userSecondTime = this.time;
+          }
+
+
+
           const dialogRef = this.dialog.open(RestartGameComponent, {
             disableClose: true
         });
