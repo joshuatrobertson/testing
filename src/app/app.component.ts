@@ -13,10 +13,10 @@ export class AppComponent implements OnInit {
   // Images pulled from site. The number * 2 represents playing cards for the user
   cardImages = [
     'pDGNBK9A0sk'
-    //'fYDrhbVlV1E',
-    //'qoXgaF27zBc',
-    //'b9drVB7xIOI',
-    //'TQ-q5WAVHj0'
+    // 'fYDrhbVlV1E',
+    // 'qoXgaF27zBc',
+    // 'b9drVB7xIOI',
+    // 'TQ-q5WAVHj0'
   ];
 
   userFirstTime = 0;
@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
   time = 0;
   interval;
   display;
+  timerStart = false;
 
   // Allow the user 2 turns
   userSecondGame = false;
@@ -91,15 +92,18 @@ export class AppComponent implements OnInit {
 
   startTimer(): void {
     console.log('=====>');
-    this.interval = setInterval(() => {
-      if (this.time === 0) {
-        this.time++;
-      } else {
-        this.time++;
-      }
-      this.display = this.transform( this.time);
-    }, 1000);
-  }
+    if (this.timerStart === false) {
+      this.interval = setInterval(() => {
+        if (this.time === 0) {
+          this.time++;
+        } else {
+          this.time++;
+        }
+        this.display = this.transform( this.time);
+      }, 1000);
+    }
+    this.timerStart = true;
+    }
   transform(value: number): string {
     const minutes: number = Math.floor(value / 60);
     return minutes + ':' + (value - minutes * 60);
@@ -110,6 +114,7 @@ export class AppComponent implements OnInit {
   }
 
   resetTimer(): void {
+    this.timerStart = false;
     this.time = 0;
   }
 
@@ -130,12 +135,10 @@ export class AppComponent implements OnInit {
           clearInterval(this.interval);
           if (this.userSecondGame === false) {
             this.userFirstTime = this.time;
-            this.resetTimer();
             this.userSecondGame = true;
           }
           else {
             this.userSecondTime = this.time;
-            this.resetTimer();
             this.displayTimes();
           }
 
@@ -145,6 +148,7 @@ export class AppComponent implements OnInit {
             disableClose: true
         });
           dialogRef.afterClosed().subscribe(() => {
+            this.resetTimer();
             this.restart();
           });
         }
