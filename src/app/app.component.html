@@ -7,6 +7,7 @@
     those cards!</p>
   <button (click)='startTimer()'>Start Timer</button>
   <button (click)='pauseTimer()'>Pause</button>
+  {{returnTime}}
   <p>{{display }} Seconds</p>
   <div class="grid p-16">
     <app-game-card *ngFor="let c of cards; let idx=index" [data]="c" (cardClicked)="cardClicked(idx)">

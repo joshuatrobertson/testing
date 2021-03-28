@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
 
   userFirstTime = 0;
   userSecondTime = 0;
+  returnTime;
 
   // Add a time component
   time = 0;
@@ -107,6 +108,10 @@ export class AppComponent implements OnInit {
     clearInterval(this.interval);
   }
 
+  resetTimer() {
+    this.time = 0;
+  }
+
   checkForCardMatch(): void {
     setTimeout(() => {
       const cardOne = this.flippedCards[0];
@@ -124,10 +129,13 @@ export class AppComponent implements OnInit {
           clearInterval(this.interval);
           if (this.userSecondGame === false) {
             this.userFirstTime = this.time;
+            this.resetTimer();
             this.userSecondGame = true;
           }
           else {
             this.userSecondTime = this.time;
+            this.resetTimer();
+            this.displayTimes();
           }
 
 
@@ -147,6 +155,10 @@ export class AppComponent implements OnInit {
   restart(): void {
     this.matchedCount = 0;
     this.setupCards();
+  }
+
+  displayTimes(): void {
+    this.returnTime = ('The first time was: ' + this.userFirstTime + '\nThe second time was: ' + this.userSecondTime);
   }
 
 }
