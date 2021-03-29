@@ -12,8 +12,8 @@ export class AppComponent implements OnInit {
 
   // Images pulled from site. The number * 2 represents playing cards for the user
   cardImages = [
-    'pDGNBK9A0sk'
-    // 'fYDrhbVlV1E',
+    'pDGNBK9A0sk',
+    'fYDrhbVlV1E',
     // 'qoXgaF27zBc',
     // 'b9drVB7xIOI',
     // 'TQ-q5WAVHj0'
